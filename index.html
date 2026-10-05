@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111"><title>DIY Photobooth — V6</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <section id="welcomeScreen" class="screen welcome-screen">
+    <div class="brand">DIY PHOTOBOOTH</div>
+    <h1>Ready for your photos?</h1>
+    <p>Choose a frame, step into the booth, and make your strip.</p>
+    <button id="startSessionBtn" class="primary hero-btn">Start</button>
+  </section>
+
+  <section id="frameScreen" class="screen hidden">
+    <header class="screen-head"><span class="step">STEP 1</span><h2>Choose your frame</h2><p>The frame decides how your camera fits each photo.</p></header>
+    <div id="templateGrid" class="template-grid"></div>
+    <div class="frame-options">
+      <label>Photos<select id="photoCount"><option value="3">3 photos</option><option value="4">4 photos</option></select></label>
+      <label>Countdown<select id="delay"><option value="3">3 sec</option><option value="5">5 sec</option><option value="1">1 sec</option></select></label>
+    </div>
+    <button id="continueFrameBtn" class="primary wide">Continue</button>
+  </section>
+
+  <section id="boothScreen" class="screen hidden">
+    <header class="booth-head"><button id="backToFrames" class="text-btn">← Frames</button><div id="progressText">PHOTO 1 OF 3</div><button id="switchCamera" class="icon-btn" title="Switch camera">↔</button></header>
+    <div class="booth-layout">
+      <div class="preview-panel">
+        <div id="cameraCard" class="camera-card">
+          <video id="video" autoplay playsinline muted></video><canvas id="captureCanvas" hidden></canvas><div id="flash" class="flash"></div><div id="countdown" class="countdown"></div>
+          <div id="cameraPlaceholder" class="placeholder"><div class="placeholder-icon">📷</div><p>Camera will appear here</p></div>
+        </div>
+        <div id="slotActionLabel" class="slot-action-label">PHOTO 1</div>
+        <div class="capture-actions"><button id="takePhotoBtn" class="primary capture-btn">Take Photo</button><button id="uploadPhotoBtn" class="secondary">Upload Photo</button></div>
+        <div id="status" class="status">Ready</div>
+      </div>
+      <aside class="strip-panel"><div class="strip-title">YOUR FRAME</div><div id="stripPreview" class="strip-preview"></div></aside>
+    </div>
+  </section>
+
+  <section id="resultScreen" class="screen hidden result-screen">
+    <div class="step">ALL DONE</div><h2>Your photo strip</h2><div class="result-wrap"><img id="resultImage" alt="Generated photobooth strip"></div>
+    <div class="result-actions"><button id="downloadBtn" class="primary">Download</button><button id="retakeBtn" class="secondary">Start Over</button></div>
+    <p class="privacy">Everything stays on this device. Your photos are not uploaded to a server.</p>
+  </section>
+
+  <input id="slotUploadInput" type="file" accept="image/*" hidden>
+</main>
+<script src="app.js"></script>
+</body></html>
